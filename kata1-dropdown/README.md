@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# Kata 1: Dropdown Headless + Atomo de Design System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto React + TypeScript + Vite para construir un `Dropdown` reusable, agnostico de datos y con comportamiento accesible basado en hook.
 
-Currently, two official plugins are available:
+## ✨ Objetivo
+- Encapsular la logica de interaccion en `useDropdown`.
+- Exponer un atomo `Dropdown<T>` para el design system.
+- Permitir personalizacion visual por `style`, `variant` y `color`.
+- Documentar y validar con pruebas unitarias y Storybook.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🧰 Stack
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Vitest + React Testing Library
+- Storybook
 
-## React Compiler
+## ⚒️ Arquitectura
+- `useDropdown`:
+  - Maneja apertura/cierre, seleccion, teclado, click-outside y a11y.
+  - Expone `prop getters` (`getToggleButtonProps`, `getMenuProps`, `getItemProps`).
+- `Dropdown<T>`:
+  - Atomo reusable del design system que consume `useDropdown`.
+  - Soporta `renderItem` para composicion de UI por parte del padre.
+  - Sistema de estilos semantico:
+    - `style`: `default | primary | secondary`
+    - `variant`: `solid | border | light`
+    - `color`: token semantico (`neutral`, `brand`, `success`, `warning`, `danger`)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 💻 Scripts
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+npm run test
+npm run test:watch
+npm run test:coverage
+npm run storybook
+npm run build-storybook
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🗂️ Estructura clave
+- `src/hooks/useDropdown.ts`: hook headless con toda la logica.
+- `src/components/Dropdown/`: atomo `Dropdown` + tipos + tema + tests + stories.
+- `src/components/DropdownDemo/`: wrapper/demo para escenarios de negocio.
+- `src/App.tsx`: playground tipo bento con ejemplos de uso reales.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📒 Documentos del repositorio
+- [`spec.md`](./spec.md):
+  - Fuente de verdad funcional y de comportamiento.
+  - Define requerimientos mandatorios de accesibilidad, composicion y sincronizacion.
+- [`plan-refinado.md`](./plan-refinado.md):
+  - Plan de implementacion refinado por fases.
+  - Incluye checklist de ejecucion y lineamientos de pruebas/storybook.
+- [`log.md`](./log.md):
+  - Bitacora cronologica de prompts, decisiones y cambios implementados.
+  - Sirve como historial de ejecucion y trazabilidad tecnica.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔗 URLs de despliegue
+- App desplegada: `PENDIENTE_AGREGAR_URL_APP`
+- Storybook desplegado: `PENDIENTE_AGREGAR_URL_STORYBOOK`
