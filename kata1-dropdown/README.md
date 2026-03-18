@@ -59,5 +59,5 @@ npm run build-storybook
   - Sirve como historial de ejecucion y trazabilidad tecnica.
 
 ## 🔗 URLs de despliegue
-- App desplegada: `PENDIENTE_AGREGAR_URL_APP`
-- Storybook desplegado: `PENDIENTE_AGREGAR_URL_STORYBOOK`
+- App desplegada: `https://taupe-stardust-fe770f.netlify.app/`
+- Storybook desplegado: `https://zingy-sorbet-c50754.netlify.app/`
